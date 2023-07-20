@@ -28,7 +28,7 @@ const SearchBar = () => {
         setInput('')
     }, [pathName])
 
-    const {data: queryResults, refetch, isFetched, isFetching} = useQuery({
+    const {data: queryResults, refetch, isFetched} = useQuery({
         queryFn: async () => {
             if (!input) return []
             const {data} = await axios.get(`/api/search?q=${input}`)

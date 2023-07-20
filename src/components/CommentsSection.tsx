@@ -3,8 +3,6 @@ import { db } from '@/lib/db'
 import React from 'react'
 import PostComment from './PostComment'
 import CreateComment from './CreateComment'
-import { Button } from './ui/Button'
-import { MessageSquare } from 'lucide-react'
 
 interface CommentsSectionProps {
     postId: string

@@ -5,10 +5,6 @@ import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-interface PageProps {
-
-}
-
 const page = () => {
   return (
     <div

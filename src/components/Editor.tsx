@@ -1,7 +1,7 @@
 'use client'
 
 import TextareaAutosize from 'react-textarea-autosize'
-import { Message, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { PostCreationRequest, PostValidator } from '@/lib/validators/post'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useEffect, useRef, useState } from 'react'

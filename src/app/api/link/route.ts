@@ -1,5 +1,4 @@
 import axios from "axios"
-import DevServer from "next/dist/server/dev/next-dev-server"
 
 export async function GET(req: Request) {
     const url = new URL(req.url)
