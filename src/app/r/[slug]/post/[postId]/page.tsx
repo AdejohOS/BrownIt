@@ -12,7 +12,7 @@ import { ArrowBigUp, Loader2 } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import React, { Suspense } from 'react'
 
-interface PageProps {
+interface SubRedditPostPageProps {
     params: {
         postId: string,
     }
@@ -21,7 +21,7 @@ interface PageProps {
 export const dynamic = 'force-dynamic'
 export const fetchCache = 'force-no-store'
 
-const page = async ({params}: PageProps) => {
+const SubRedditPostPage = async ({params}: SubRedditPostPageProps) => {
     const cachedPost = (await redis.hgetall(
         `post:${params.postId}`
     )) as CachedPost
@@ -114,4 +114,4 @@ const page = async ({params}: PageProps) => {
   }
 }
 
-export default page
+export default SubRedditPostPage

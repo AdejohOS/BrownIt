@@ -5,15 +5,16 @@ import { z } from "zod";
 
 export async function POST(req: Request) {
     try {
+        const body = await req.json()
+
+        const { subredditId, title, content } = PostValidator.parse(body)
+
         const session = await getAuthSession()
 
         if (!session?.user) {
             return new Response('Unauthorised', {status: 401})
         }
 
-        const body = await req.json()
-
-        const { subredditId, title, content } = PostValidator.parse(body)
         
         const subscriptionExists = await db.subscription.findFirst({
             where: {

@@ -4,15 +4,21 @@ import { buttonVariants } from '@/components/ui/Button'
 import { getAuthSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { format } from 'date-fns'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-const layout = async ({
+export const metadata: Metadata = {
+    title: 'Browndit',
+    description: 'A Reddit clone built with Next.js and TypeScript.',
+  }
+  
+const Layout = async ({
     children,
     params: {slug},
 }: {
-    children: React.ReactNode,
+    children: ReactNode
     params: {slug: string}
 }) => {
 
@@ -55,9 +61,9 @@ const layout = async ({
     <div className='sm:container max-w-7xl mx-auto h-full pt-12'>
         <div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
-                <div className='flex flex-col col-span-2 space-y-6'>
+                <ul className='flex flex-col col-span-2 space-y-6'>
                     {children}
-                </div>
+                </ul>
                 {/* info bar */}
                 <div className='hidden md:block overflow-hidden h-fit
                                 rounded-lg border border-gray-200 order-first 
@@ -123,4 +129,4 @@ const layout = async ({
   )
 }
 
-export default layout
+export default Layout

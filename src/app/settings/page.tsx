@@ -12,7 +12,7 @@ const page = async () => {
     const session = await getAuthSession()
 
     if (!session?.user) {
-        redirect(authOptions.pages?.signIn || '/sign-in')
+        redirect(authOptions?.pages?.signIn || '/sign-in')
     }
   return (
     <div className='mx-w-4xl mx-auto py-12'>

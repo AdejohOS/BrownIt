@@ -51,8 +51,9 @@ export async function PATCH(req: Request) {
                     },
                 })
 
+                return new Response('OK')
             }
-            return new Response('OK')
+            
         }
 
         // no existing vote
@@ -62,7 +63,7 @@ export async function PATCH(req: Request) {
                 type: voteType,
                 userId: session.user.id,
                 commentId,
-            }
+            },
         })
 
         

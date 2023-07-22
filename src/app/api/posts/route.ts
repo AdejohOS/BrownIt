@@ -16,12 +16,10 @@ export async function GET(req: Request) {
             },
             include: {
                 subreddit: true,
-            }
+            },
         })
 
-        followedCommunitiesIds = followedCommunities.map(
-            ({ subreddit }) => subreddit.id
-        )
+        followedCommunitiesIds = followedCommunities.map(( sub ) => sub.subreddit.id)
     }
 
     try {
@@ -39,11 +37,17 @@ export async function GET(req: Request) {
 
         if (subredditName) {
             whereClause = {
-                subreddit: {
-                    id: {
-                        in: followedCommunitiesIds,
-                    }
-                }
+              subreddit: {
+                name: subredditName,
+              },
+            }
+        } else if (session) {
+            whereClause = {
+              subreddit: {
+                id: {
+                  in: followedCommunitiesIds,
+                },
+              },
             }
         }
 
@@ -65,9 +69,6 @@ export async function GET(req: Request) {
         return new Response(JSON.stringify(posts))
 
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            return new Response('Invalid  data passed', {status: 422} )
-        }
 
         return new Response('Could not fetch more posts, try again later', {status: 500})
    
